@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/baseLayout}"
+>
+<th:block layout:fragment="title">
+  <title>회원가입</title>
+</th:block>
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/css/join.css}">
+</th:block>
+<th:block layout:fragment="javascript">
+  <script th:src="@{/js/join}"></script>
+</th:block>
+<th:block layout:fragment="container">
+ <div class="container">
+   <div class="join">
+     <div class="join-con">
+       <form th:action="@{/member/join}" method="post" th:object="${memberDto}">
+         email: <input type="email" th:field="*{email}"> <br>
+         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+         pw: <input type="password" th:field="*{pw}"> <br>
+         <p th:if="${#fields.hasErrors('pw')}" th:errors="*{pw}"></p>
+         <input type="submit" value="회원가입">
+       </form>
+
+     </div>
+   </div>
+ </div>
+
+</th:block>
+</html>

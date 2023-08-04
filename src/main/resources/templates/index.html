@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/baseLayout}"
+>
+<th:block layout:fragment="title">
+  <title>index</title>
+</th:block>
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</th:block>
+<th:block layout:fragment="javascript">
+  <script th:src="@{/js/index}"></script>
+</th:block>
+<th:block layout:fragment="container">
+ <div class="container">
+   <div class="index">
+     <div class="index-con">
+
+       index
+
+
+     </div>
+   </div>
+ </div>
+
+</th:block>
+</html>

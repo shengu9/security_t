@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<div class="header" th:fragment="headerFragment">
+  <div class="nav">
+    <div class="left-nav">
+      <h1 class="logo">
+        <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+      </h1>
+      <div class="gnb">
+        <ul>
+          <li><a th:href="@{/}">HOME</a></li>
+          <li><a th:href="@{/}">베스트</a></li>
+          <li><a th:href="@{/}">계절전</a></li>
+          <li><a th:href="@{/}">MAN</a></li>
+          <li><a th:href="@{/}">WOMAN</a></li>
+          <li sec:authorize="hasAnyRole('ADMIN','MEMBER')">
+            <a th:href="@{/member/memberShip}">MEMBER_SHIP</a>
+          </li>
+          <li sec:authorize="hasAnyRole('ADMIN','SELLER')">
+            <a th:href="@{/shop}">SHOP</a>
+          </li>
+          <li sec:authorize="hasAnyRole('ADMIN')">
+            <a th:href="@{/admin}">ADMIN</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="right-nav">
+
+          <li>
+            <a th:href="@{/board}"  class="data1">고객센터</a>
+          </li>
+          <li sec:authorize="isAnonymous()"> <!-- 로그인 후 보이지 않게 -->
+            <a th:href="@{/member/login}" class="data1">LOGIN</a>
+          </li>
+          <li sec:authorize="isAnonymous()"> <!-- 로그인 후 보이지 않게 -->
+            <a th:href="@{/member/join}" class="data1">JOIN</a>
+          </li>
+          <li sec:authorize="isAuthenticated()"> <!-- 로그인 후 접속 가능 -->
+            <a th:href="@{/member/logOut}"  class="data1">LOGOUT</a>
+          </li>
+          <li sec:authorize="isAuthenticated()"> <!-- 로그인 후 접속 가능 -->
+            <span th:text="${#authentication.principal.username}"  class="data1 span"></span> <!-- User username get -->
+            <!--            <span th:text="${#authentication.authorities}"></span>   &lt;!&ndash; User ROLE &ndash;&gt;-->
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>
+</html>
